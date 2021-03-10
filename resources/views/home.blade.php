@@ -1,23 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+    @if($companies)
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{$companies}}</h3>
+                    <p>{{__('Companies')}}</p>
                 </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="{{route('company.index')}}" class="small-box-footer">{{__('More info')}} <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-    </div>
-</div>
+    @endif
+    @if($employers)
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>{{$employers}}</h3>
+
+                    <p>{{__('Employers')}}</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="#" class="small-box-footer">{{__('More info')}} <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    @endif
+    <!-- ./col -->
 @endsection

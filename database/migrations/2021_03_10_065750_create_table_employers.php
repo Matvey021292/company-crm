@@ -18,8 +18,7 @@ class CreateTableEmployers extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('lastname');
-            $table->integer('company_id')->unsigned();
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->integer('company_id');
             $table->string('email')->unique();
             $table->string('phone');
         });

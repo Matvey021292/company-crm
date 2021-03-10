@@ -28,7 +28,7 @@ class EmployerRequest extends FormRequest
             'name' => 'required|string|min:4|max:255',
             'lastname' => 'required|string|min:4|max:255',
             'email' => 'required|email:rfc,dns|unique:companies,email,'.$this->employer .'|max:255',
-            'phone' => 'required|regex:/(80)[0-9]{11}/'
+            'phone' => 'required|regex:/(80)[0-9]{9}/'
         ];
     }
 

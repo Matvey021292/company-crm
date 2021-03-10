@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Employer;
 use Illuminate\Http\Request;
 use Config;
+use Illuminate\Support\Facades\Storage;
 
 class EmployerController extends Controller
 {
@@ -43,7 +44,6 @@ class EmployerController extends Controller
     public function store(EmployerRequest $request)
     {
         $item = $request->only('name', 'lastname', 'email', 'phone', 'company_id');
-        dd($item);
 
         Employer::create($item);
         return redirect(route('employer.index'))
@@ -69,9 +69,11 @@ class EmployerController extends Controller
      */
     public function edit($id)
     {
-        $item = Company::findOrFail($id);
-        return view('company.edit')
+        $item = Employer::findOrFail($id);
+        $companies = Company::select('id', 'name')->get();
+        return view('employer.edit')
             ->with('item', $item)
+            ->with('companies', $companies)
             ->render();
     }
 
@@ -84,7 +86,14 @@ class EmployerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = $request->only('name', 'email', 'lastname', 'phone', 'company_id');
+
+        $employer = Employer::where('id', $id)->first();
+
+
+        $employer->update($item);
+        return redirect(route('employer.index'))
+            ->with('notification', 'Employer edited!');
     }
 
     /**

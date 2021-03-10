@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Employer extends Model
 {
     use HasFactory;
-    use HasFactory;
 
     protected $fillable = ['name', 'email', 'lastname', 'phone', 'company_id'];
 

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CompanyRequest;
+use App\Mail\NewCompanyNotification;
 use App\Models\Company;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Config;
 
@@ -50,6 +52,13 @@ class CompanyController extends Controller
         }
 
         Company::create($item);
+
+        $details = [
+            'title' => "Create new company {$item['name']}",
+        ];
+
+        Mail::to(env('ADMIN_EMAIL_TO'))->send(new NewCompanyNotification($details));
+
         return redirect(route('company.index'))
             ->with('notification', 'Company created!');
     }
@@ -109,6 +118,7 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        Company::destroy($id);
+        $status = Company::destroy($id);
+        dd($status);
     }
 }

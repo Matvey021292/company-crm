@@ -29,12 +29,10 @@
                 </div>
                 <div class="form-group">
                     <label for="companyInputFile">{{(__('Company logo'))}}</label>
-                    @if($item->logo)
-                        <div class="mb-2 widget-user-image">
-                            <img width="100" id="prevLogo" class="img-fluid" src="{{  Storage::url($item->logo) }}"
-                                 alt="Company Avatar">
-                        </div>
-                    @endif
+                    <div class="mb-2 widget-user-image">
+                        <img width="100" id="prevLogo" class="@if(!$item->logo) d-none @endif img-fluid" src="{{  Storage::url($item->logo) }}"
+                             alt="Company Avatar">
+                    </div>
                     <div class="input-group">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" name="logo" id="companyInputFile">

@@ -1,5 +1,6 @@
 $(document).ready(function () {
     var token = $('[name="csrf-token"]').attr('content');
+    var logoContainer = $("#prevLogo");
 
     $("#companyInputFile").change(function () {
         var files = $(this)[0].files;
@@ -9,17 +10,22 @@ $(document).ready(function () {
 
             var reader = new FileReader();
             reader.onload = function(e) {
-                $("#prevLogo").attr('src', e.target.result);
+                logoContainer.attr('src', e.target.result);
+                logoContainer.removeClass('d-none')
             };
-            // read the image file as a data URL.
             reader.readAsDataURL(this.files[0]);
+
         } else {
             alert("Please select a file.");
         }
     });
 
     $('.delete').click(function (){
+        var Confirm = confirm('Delete?');
+        if(!Confirm) return;
+
         var $this = $(this);
+        var parents = $this.parents('tr');
 
         $.ajax({
             url: $this.data('action'),
@@ -30,7 +36,7 @@ $(document).ready(function () {
                 "_token": token,
             },
             success: function (){
-                $this.parents('tr').remove();
+                parents.remove();
             }
         })
     })

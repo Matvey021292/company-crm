@@ -14,12 +14,12 @@
                 <table class="table table-fixed table-head-fixed text-nowrap">
                     <thead>
                     <tr>
-                        <th style="width: 50px">{{__('ID')}}</th>
-                        <th>{{__('Name')}}</th>
-                        <th>{{__('Last Name')}}</th>
+                        <th width="50">{{__('ID')}}</th>
+                        <th width="100">{{__('Name')}}</th>
+                        <th width="150">{{__('Last Name')}}</th>
                         <th>{{__('Email')}}</th>
                         <th>{{__('Phone')}}</th>
-                        <th>{{__('Company')}}</th>
+                        <th width="100">{{__('Company')}}</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -32,8 +32,8 @@
                                 <td>{{$item->lastname}}</td>
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->phone}}</td>
-                                <td>{{$item->company->name}}</td>
-                                <td>
+                                <td>{{isset($item->company) ? $item->company->name : 'no company'}}</td>
+                                <td class="text-center">
                                     <a href="{{route('employer.edit', ['employer' => $item->id])}}"
                                        class="btn btn-primary">{{__('Edit')}}</a>
                                     <button id="{{$item->id}}" data-action="{{route('employer.destroy', ['employer' => $item->id])}}" class="delete btn btn-danger">{{__('Delete')}}</button>

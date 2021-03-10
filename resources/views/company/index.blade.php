@@ -1,24 +1,23 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="">{{ __('Companies') }}</h3>
-                <div>
+                <div class="float-right">
                     <a href="{{ route('company.create') }}"
-                       class="btn btn-primary btn-lg">{{ __('Create new company') }}</a>
+                       class="btn btn-primary btn-lg">{{ __('site.create') }} {{ __('site.company') }}</a>
                 </div>
+                <h3 class="">{{ __('site.companies') }}</h3>
             </div>
             <div class="card-body table-responsive p-0">
                 <table class="table table-fixed table-head-fixed text-nowrap">
                     <thead>
                     <tr>
                         <th style="width: 50px">{{__('ID')}}</th>
-                        <th>{{__('Name')}}</th>
-                        <th>{{__('Email')}}</th>
-                        <th>{{__('Site')}}</th>
-                        <th>{{__('logo')}}</th>
+                        <th>{{__('site.name')}}</th>
+                        <th>{{__('site.email')}}</th>
+                        <th>{{__('site.site')}}</th>
+                        <th>{{__('site.logo')}}</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -33,23 +32,22 @@
                                 <td>
                                     @if($item->logo)
                                         <div class="widget-user-image">
-                                            <img width="100" class="img-fluid" src="{{  Storage::url($item->logo) }}"
-                                                 alt="Company Avatar">
+                                            <img width="100" class="img-fluid" src="{{  Storage::url($item->logo) }}">
                                         </div>
                                     @endif
                                 </td>
                                 <td>
                                     <a href="{{route('company.edit', ['company' => $item->id])}}"
-                                       class="btn btn-primary">{{__('Edit')}}</a>
+                                       class="btn btn-primary">{{__('site.edit')}}</a>
                                     <button id="{{$item->id}}"
                                             data-action="{{route('company.destroy', ['company' => $item->id])}}"
-                                            class="delete btn btn-danger">{{__('Delete')}}</button>
+                                            class="delete btn btn-danger">{{__('site.delete')}}</button>
                                 </td>
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td>{{__('Not exist company')}}</td>
+                            <td>{{__('Not exist')}} {{__('site.company')}}</td>
                         </tr>
                     @endif
                     </tbody>
