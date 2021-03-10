@@ -11,14 +11,15 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js([
-        'node_modules/admin-lte/plugins/jquery/jquery.min.js',
-        'node_modules/admin-lte/plugins/bootstrap/js/bootstrap.min.js',
-        'node_modules/admin-lte/dist/js/adminlte.min.js',
-        'resources/js/app.js'
-
-    ],
-    'public/js')
+mix.browserSync({proxy: 'http://localhost:8000'})
+    .js([
+            'node_modules/admin-lte/plugins/jquery/jquery.min.js',
+            'node_modules/admin-lte/plugins/bootstrap/js/bootstrap.min.js',
+            'node_modules/admin-lte/dist/js/adminlte.min.js',
+            'resources/js/common.js'
+        ],
+        'public/js')
+    .js('resources/js/common.js', 'public/js/common.js')
     .sass('resources/sass/app.scss', 'public/css')
     .styles(
         [

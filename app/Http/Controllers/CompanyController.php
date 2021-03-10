@@ -4,105 +4,111 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Storage;
+use Config;
 
 class CompanyController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
     public function index()
     {
-        $companies = Company::paginate(10);
+        $items = Company::paginate(Config::get('setting.per_page'));
         return view('company.index')
-            ->with('companies', $companies)
+            ->with('items', $items)
             ->render();
     }
 
+
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
         return view('company.create');
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CompanyRequest $request
+     * @return Application|RedirectResponse|Redirector
      */
     public function store(CompanyRequest $request)
     {
-        $company = $request->only('name', 'email', 'site');
+        $item = $request->only('name', 'email', 'site');
 
         if ($request->hasFile('logo')) {
-            $logo =  $request->file('logo')->storePublicly('public');;
-            $company['logo'] = $logo;
+            $logo = $request->file('logo')->storePublicly('public');;
+            $item['logo'] = $logo;
         }
 
-        Company::create($company);
-        return redirect(route('company.index'))->with('notification', 'Company created!');
+        Company::create($item);
+        return redirect(route('company.index'))
+            ->with('notification', 'Company created!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
     }
 
+
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return string
      */
     public function edit($id)
     {
-        $company = Company::findOrFail($id);
+        $item = Company::findOrFail($id);
         return view('company.edit')
-            ->with('company', $company)
+            ->with('item', $item)
             ->render();
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CompanyRequest $request
+     * @param $id
+     * @return Application|RedirectResponse|Redirector
      */
     public function update(CompanyRequest $request, $id)
     {
-        $company = $request->only('name', 'email', 'site');
+        $item = $request->only('name', 'email', 'site');
+
+        $current = Company::where('id', $id)->first();
 
         if ($request->hasFile('logo')) {
-            $logo =  $request->file('logo')->storePublicly('public');;
-            $company['logo'] = $logo;
+            $logo = $request->file('logo')->storePublicly('public');
+            Storage::delete($current->logo);
+            $item['logo'] = $logo;
         }
 
-        Company::where('id', $id)->update($company);
-        return redirect(route('company.index'))->with('notification', 'Company edited!');
+        $current->update($item);
+        return redirect(route('company.index'))
+            ->with('notification', 'Company edited!');
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        Company::destroy($id);
     }
 }

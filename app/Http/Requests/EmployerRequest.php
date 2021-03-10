@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
-class CompanyRequest extends FormRequest
+class EmployerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,8 +26,9 @@ class CompanyRequest extends FormRequest
 
         return [
             'name' => 'required|string|min:4|max:255',
-            'email' => 'required|email:rfc,dns|unique:employers,email,'.$this->company .'|max:255',
-            "logo"  => "dimensions:min_width=100,min_height=100,max_width=1024,max-height=768|image|mimes:jpeg,png,jpg|max:2048"
+            'lastname' => 'required|string|min:4|max:255',
+            'email' => 'required|email:rfc,dns|unique:companies,email,'.$this->employer .'|max:255',
+            'phone' => 'required|regex:/(80)[0-9]{11}/'
         ];
     }
 
@@ -38,10 +37,13 @@ class CompanyRequest extends FormRequest
         return [
             'name.required' => __('Name required'),
             'name.min' => __('Min 4 symbol'),
+            'lastname.required' => __('Last Name required'),
+            'lastname.min' => __('Min 4 symbol'),
+            'phone.required' => __('Phone required'),
+            'phone.regex' => __('Invalid phone'),
             'email.required' => __('Email required'),
             'email.unique' => __('Email exists'),
             'email.email' => __('Invalid email address'),
-            'logo.dimensions' => __('Size logo')
         ];
     }
 }

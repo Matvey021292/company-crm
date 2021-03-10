@@ -1,5 +1,6 @@
 {
     "/js/jquery.min.js": "/js/jquery.min.js",
+    "/js/common.js": "/js/common.js",
     "/css/app.css": "/css/app.css",
     "/css/common.css": "/css/common.css"
 }
