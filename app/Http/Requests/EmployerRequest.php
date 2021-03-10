@@ -35,15 +35,14 @@ class EmployerRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('Name required'),
-            'name.min' => __('Min 4 symbol'),
-            'lastname.required' => __('Last Name required'),
-            'lastname.min' => __('Min 4 symbol'),
-            'phone.required' => __('Phone required'),
-            'phone.regex' => __('Invalid phone'),
-            'email.required' => __('Email required'),
-            'email.unique' => __('Email exists'),
-            'email.email' => __('Invalid email address'),
+            'name.required' => __('site.nameRequired'),
+            'name.min' => __('site.nameMinSymbol'),
+            'lastname.required' => __('site.lastNameRequired'),
+            'lastname.min' => __('site.lastNameMinSymbol'),
+            'phone.regex' => __('site.invalidPhone'),
+            'email.required' => __('site.emailRequired'),
+            'email.unique' => __('site.emailExists'),
+            'email.email' => __('site.invalidEmailAddress'),
         ];
     }
 }

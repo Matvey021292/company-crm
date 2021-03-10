@@ -84,7 +84,7 @@ class EmployerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmployerRequest $request, $id)
     {
         $item = $request->only('name', 'email', 'lastname', 'phone', 'company_id');
 
@@ -104,6 +104,6 @@ class EmployerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Employer::destroy($id);
     }
 }

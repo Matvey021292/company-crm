@@ -12,28 +12,28 @@
                     @method('patch')
                 </div>
                 <div class="form-group">
-                    <label for="employerInputName">{{__('Employer name')}}</label>
-                    <input type="text" class="form-control" id="employerInputName" name="name" placeholder="Name"
+                    <label for="employerInputName">{{__('site.firstname')}}</label>
+                    <input type="text" class="form-control" id="employerInputName" name="name" placeholder="{{__('site.firstname')}}"
                            value="{{$item->name}}">
                 </div>
                 <div class="form-group">
-                    <label for="employerInputName">{{__('Employer last name')}}</label>
+                    <label for="employerInputName">{{__('site.lastname')}}</label>
                     <input type="text" class="form-control" id="employerInputName" name="lastname"
-                           placeholder="Last Name" value="{{$item->lastname}}">
+                           placeholder="{{__('site.lastname')}}" value="{{$item->lastname}}">
                 </div>
                 <div class="form-group">
-                    <label for="employerInputEmail">{{__('Employer email')}}</label>
-                    <input type="email" class="form-control" id="employerInputEmail" name="email" placeholder="Email"
+                    <label for="employerInputEmail">{{__('site.email')}}</label>
+                    <input type="email" class="form-control" id="employerInputEmail" name="email" placeholder="{{__('site.email')}}"
                            value="{{$item->email}}">
                 </div>
                 <div class="form-group">
-                    <label for="employerInputSite">{{__('Employer phone')}}</label>
-                    <input type="text" class="form-control" id="employerInputSite" name="phone" placeholder="Phone"
+                    <label for="employerInputSite">{{__('site.phone')}}</label>
+                    <input type="text" class="form-control" id="employerInputSite" name="phone" placeholder="{{__('site.phone')}}"
                            value="{{$item->phone}}">
                 </div>
                 @if($companies->isNotEmpty())
                     <div class="form-group">
-                        <label>Category</label>
+                        <label>{{__('site.company')}}</label>
                         <select name="company_id" class="form-control">
                             @foreach($companies as $company)
                                 <option @if($company->id == $item->company_id) selected @endif  value="{{$company->id}}">{{$company->name}}</option>
@@ -44,7 +44,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer text-center">
-                <button type="submit" class="w-100 btn btn-primary btn-lg">{{__('Save employer')}}</button>
+                <button type="submit" class="w-100 btn btn-primary btn-lg">{{__('site.editEmployer')}}</button>
             </div>
         </form>
     </div>

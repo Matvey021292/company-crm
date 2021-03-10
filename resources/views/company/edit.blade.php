@@ -13,25 +13,24 @@
                     @method('patch')
                 </div>
                 <div class="form-group">
-                    <label for="companyInputName">{{__('Company name')}}</label>
-                    <input type="text" class="form-control" id="companyInputName" name="name" placeholder="Name"
+                    <label for="companyInputName">{{__('site.name')}}</label>
+                    <input type="text" class="form-control" id="companyInputName" name="name" placeholder="{{__('site.name')}}"
                            value="{{$item->name}}">
                 </div>
                 <div class="form-group">
-                    <label for="companyInputEmail">{{__('Company email')}}</label>
-                    <input type="email" class="form-control" id="companyInputEmail" name="email" placeholder="Email"
+                    <label for="companyInputEmail">{{__('site.email')}}</label>
+                    <input type="email" class="form-control" id="companyInputEmail" name="email" placeholder="{{__('site.email')}}"
                            value="{{$item->email}}">
                 </div>
                 <div class="form-group">
-                    <label for="companyInputSite">{{__('Company site')}}</label>
-                    <input type="text" class="form-control" id="companyInputSite" name="site" placeholder="Site"
+                    <label for="companyInputSite">{{__('site.site')}}</label>
+                    <input type="text" class="form-control" id="companyInputSite" name="site" placeholder="{{__('site.site')}}"
                            value="{{ !empty($item->site) ? $item->site : ''}}">
                 </div>
                 <div class="form-group">
-                    <label for="companyInputFile">{{(__('Company logo'))}}</label>
+                    <label for="companyInputFile">{{(__('site.logo'))}}</label>
                     <div class="mb-2 widget-user-image">
-                        <img width="100" id="prevLogo" class="@if(!$item->logo) d-none @endif img-fluid" src="{{  Storage::url($item->logo) }}"
-                             alt="Company Avatar">
+                        <img width="100" id="prevLogo" class="@if(!$item->logo) d-none @endif img-fluid" src="{{  Storage::url($item->logo) }}">
                     </div>
                     <div class="input-group">
                         <div class="custom-file">
@@ -40,19 +39,19 @@
                                 @if($item->logo)
                                     {{ $item->logo}}
                                 @else
-                                    {{__('Choose file')}}
+                                    {{__('site.choseFile')}}
                                 @endif
                             </label>
                         </div>
                         <div class="input-group-append">
-                            <span class="input-group-text">{{__('Upload')}}</span>
+                            <span class="input-group-text">{{__('site.upload')}}</span>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer text-center">
-                <button type="submit" class="w-100 btn btn-primary btn-lg">{{__('Edit company')}}</button>
+                <button type="submit" class="w-100 btn btn-primary btn-lg">{{__('site.editCompany')}}</button>
             </div>
         </form>
     </div>

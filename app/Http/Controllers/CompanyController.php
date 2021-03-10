@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CompanyRequest;
 use App\Mail\NewCompanyNotification;
 use App\Models\Company;
+use App\Models\Employer;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -13,6 +14,7 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Config;
+use MongoDB\Driver\Session;
 
 class CompanyController extends Controller
 {
@@ -110,15 +112,25 @@ class CompanyController extends Controller
 
     }
 
+
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        $status = Company::destroy($id);
-        dd($status);
+        $employers = Employer::select('id')->where('company_id', $id)->get();
+
+        if($employers->isEmpty()){
+            Company::destroy($id);
+        }
+//        else{
+//            return response()->json(
+//                [
+//                    'status' => 'error',
+//                    'message' => __('site.existEmployer')
+//                ]
+//            );
+//        }
     }
 }

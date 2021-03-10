@@ -5,7 +5,7 @@
             <div class="card-header">
                 <div class="float-right">
                     <a href="{{ route('company.create') }}"
-                       class="btn btn-primary btn-lg">{{ __('site.create') }} {{ __('site.company') }}</a>
+                       class="btn btn-primary btn-lg">{{ __('site.createNewCompany') }}</a>
                 </div>
                 <h3 class="">{{ __('site.companies') }}</h3>
             </div>
@@ -14,10 +14,10 @@
                     <thead>
                     <tr>
                         <th style="width: 50px">{{__('ID')}}</th>
-                        <th>{{__('site.name')}}</th>
-                        <th>{{__('site.email')}}</th>
-                        <th>{{__('site.site')}}</th>
-                        <th>{{__('site.logo')}}</th>
+                        <th width="150">{{__('site.name')}}</th>
+                        <th width="200">{{__('site.email')}}</th>
+                        <th width="200">{{__('site.site')}}</th>
+                        <th width="150">{{__('site.logo')}}</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -36,7 +36,7 @@
                                         </div>
                                     @endif
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <a href="{{route('company.edit', ['company' => $item->id])}}"
                                        class="btn btn-primary">{{__('site.edit')}}</a>
                                     <button id="{{$item->id}}"
@@ -47,7 +47,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td>{{__('Not exist')}} {{__('site.company')}}</td>
+                            <td>{{__('site.exist')}}</td>
                         </tr>
                     @endif
                     </tbody>

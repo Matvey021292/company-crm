@@ -4,10 +4,10 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="">{{ __('Employers') }}</h3>
+                <h3 class="">{{ __('site.employers') }}</h3>
                 <div>
                     <a href="{{ route('employer.create') }}"
-                       class="btn btn-primary btn-lg">{{ __('Create new employer') }}</a>
+                       class="btn btn-primary btn-lg">{{ __('site.createNewEmployer') }}</a>
                 </div>
             </div>
             <div class="card-body table-responsive p-0">
@@ -15,11 +15,11 @@
                     <thead>
                     <tr>
                         <th width="50">{{__('ID')}}</th>
-                        <th width="100">{{__('Name')}}</th>
-                        <th width="150">{{__('Last Name')}}</th>
-                        <th>{{__('Email')}}</th>
-                        <th>{{__('Phone')}}</th>
-                        <th width="100">{{__('Company')}}</th>
+                        <th width="100">{{__('site.firstname')}}</th>
+                        <th width="150">{{__('site.lastname')}}</th>
+                        <th width="180">{{__('Email')}}</th>
+                        <th width="180">{{__('site.phone')}}</th>
+                        <th width="150">{{__('site.company')}}</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -32,17 +32,17 @@
                                 <td>{{$item->lastname}}</td>
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->phone}}</td>
-                                <td>{{isset($item->company) ? $item->company->name : 'no company'}}</td>
+                                <td>{{isset($item->company) ? $item->company->name : __('site.noCompany')}}</td>
                                 <td class="text-center">
                                     <a href="{{route('employer.edit', ['employer' => $item->id])}}"
-                                       class="btn btn-primary">{{__('Edit')}}</a>
-                                    <button id="{{$item->id}}" data-action="{{route('employer.destroy', ['employer' => $item->id])}}" class="delete btn btn-danger">{{__('Delete')}}</button>
+                                       class="btn btn-primary">{{__('site.edit')}}</a>
+                                    <button id="{{$item->id}}" data-action="{{route('employer.destroy', ['employer' => $item->id])}}" class="delete btn btn-danger">{{__('site.delete')}}</button>
                                 </td>
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td>{{__('Not exist employer')}}</td>
+                            <td>{{__('site.exist')}}</td>
                         </tr>
                     @endif
                     </tbody>

@@ -36,12 +36,12 @@ class CompanyRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('Name required'),
-            'name.min' => __('Min 4 symbol'),
-            'email.required' => __('Email required'),
-            'email.unique' => __('Email exists'),
-            'email.email' => __('Invalid email address'),
-            'logo.dimensions' => __('Size logo')
+            'name.required' => __('site.nameRequired'),
+            'name.min' => __('site.minSymbol'),
+            'email.required' => __('site.emailRequired'),
+            'email.unique' => __('site.emailExists'),
+            'email.email' => __('site.invalidEmailAddress'),
+            'logo.dimensions' => __('site.sizeLogo')
         ];
     }
 }
