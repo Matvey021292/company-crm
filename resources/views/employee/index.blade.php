@@ -5,6 +5,7 @@
     <div class="col-12">
         <div class="form-group">
             @include('partials.notification')
+            <input type="hidden" name="confirm" value="{{__('site.delete')}}">
         </div>
         <div class="card">
             <div class="card-header">

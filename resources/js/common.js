@@ -21,7 +21,7 @@ $(document).ready(function () {
     });
 
     $('.delete').click(function (){
-        var Confirm = confirm('Delete?');
+        var Confirm = confirm($('[name="confirm"]').val());
         if(!Confirm) return;
 
         var $this = $(this);
