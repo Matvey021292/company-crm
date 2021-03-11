@@ -10005,3 +10005,12 @@ h3 {
 .table-fixed {
   table-layout: fixed;
 }
+
+*[role=navigation] svg {
+  max-width: 20px;
+  max-height: 20px;
+}
+
+*[role=navigation] p {
+  margin-top: 20px;
+}

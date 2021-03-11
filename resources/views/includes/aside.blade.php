@@ -38,9 +38,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('employer.index')}}" class="nav-link">
+                    <a href="{{route('employee.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
-                        <p> {{__('site.employers')}} </p>
+                        <p> {{__('site.employees')}} </p>
                     </a>
                 </li>
             </ul>

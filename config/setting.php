@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'pare_page' => 10
+    'perPage' => 10
 ];

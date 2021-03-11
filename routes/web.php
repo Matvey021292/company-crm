@@ -27,4 +27,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/lang/{locale}', 'App\Http\Controllers\LocalizationController@index');
 
 Route::resource('/company', 'App\Http\Controllers\CompanyController')->middleware('auth');
-Route::resource('/employer', 'App\Http\Controllers\EmployerController')->middleware('auth');
+Route::resource('/employee', 'App\Http\Controllers\EmployeeController')->middleware('auth');

@@ -35,7 +35,11 @@ $(document).ready(function () {
                 "_method": 'DELETE',
                 "_token": token,
             },
-            success: function (){
+            success: function (resp){
+                if(resp.status == 'error'){
+                    alert(resp.message);
+                    return;
+                }
                 parents.remove();
             }
         })

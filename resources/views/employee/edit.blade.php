@@ -1,8 +1,9 @@
+@section('title', __('site.employe'))
 @extends('layouts.app')
 
 @section('content')
     <div class="col-md-6 mx-auto">
-        <form action="{{route('employer.update', ['employer' => $item->id] )}}" method="post">
+        <form action="{{route('employee.update', ['employee' => $item->id] )}}" method="post">
             <div class="card-body">
                 <div class="form-group">
                     @include('partials.errors')
@@ -12,23 +13,23 @@
                     @method('patch')
                 </div>
                 <div class="form-group">
-                    <label for="employerInputName">{{__('site.firstname')}}</label>
-                    <input type="text" class="form-control" id="employerInputName" name="name" placeholder="{{__('site.firstname')}}"
+                    <label for="employeeInputName">{{__('site.firstname')}}</label>
+                    <input type="text" class="form-control" id="employeeInputName" name="name" placeholder="{{__('site.firstname')}}"
                            value="{{$item->name}}">
                 </div>
                 <div class="form-group">
-                    <label for="employerInputName">{{__('site.lastname')}}</label>
-                    <input type="text" class="form-control" id="employerInputName" name="lastname"
+                    <label for="employeeInputName">{{__('site.lastname')}}</label>
+                    <input type="text" class="form-control" id="employeeInputName" name="lastname"
                            placeholder="{{__('site.lastname')}}" value="{{$item->lastname}}">
                 </div>
                 <div class="form-group">
-                    <label for="employerInputEmail">{{__('site.email')}}</label>
-                    <input type="email" class="form-control" id="employerInputEmail" name="email" placeholder="{{__('site.email')}}"
+                    <label for="employeeInputEmail">{{__('site.email')}}</label>
+                    <input type="email" class="form-control" id="employeeInputEmail" name="email" placeholder="{{__('site.email')}}"
                            value="{{$item->email}}">
                 </div>
                 <div class="form-group">
-                    <label for="employerInputSite">{{__('site.phone')}}</label>
-                    <input type="text" class="form-control" id="employerInputSite" name="phone" placeholder="{{__('site.phone')}}"
+                    <label for="employeeInputSite">{{__('site.phone')}}</label>
+                    <input type="text" class="form-control" id="employeeInputSite" name="phone" placeholder="{{__('site.phone')}}"
                            value="{{$item->phone}}">
                 </div>
                 @if($companies->isNotEmpty())
@@ -44,7 +45,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer text-center">
-                <button type="submit" class="w-100 btn btn-primary btn-lg">{{__('site.editEmployer')}}</button>
+                <button type="submit" class="w-100 btn btn-primary btn-lg">{{__('site.editEmployee')}}</button>
             </div>
         </form>
     </div>

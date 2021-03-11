@@ -1,3 +1,4 @@
+@section('title', __('site.company'))
 @extends('layouts.app')
 
 @section('content')

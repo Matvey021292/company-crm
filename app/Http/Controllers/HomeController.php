@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
-use App\Models\Employer;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,9 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         $companies = Company::count();
-        $employers = Employer::count();
+        $employees = Employee::count();
         return view('home')
             ->with('companies', $companies)
-            ->with('employers', $employers);
+            ->with('employees', $employees);
     }
 }

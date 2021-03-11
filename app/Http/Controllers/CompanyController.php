@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CompanyRequest;
 use App\Mail\NewCompanyNotification;
 use App\Models\Company;
-use App\Models\Employer;
+use App\Models\Employee;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,7 +14,6 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Config;
-use MongoDB\Driver\Session;
 
 class CompanyController extends Controller
 {
@@ -24,7 +23,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $items = Company::paginate(Config::get('setting.per_page'));
+        $items = Company::paginate(Config::get('setting.perPage'));
         return view('company.index')
             ->with('items', $items)
             ->render();
@@ -59,7 +58,9 @@ class CompanyController extends Controller
             'title' => "Create new company {$item['name']}",
         ];
 
-        Mail::to(env('ADMIN_EMAIL_TO'))->send(new NewCompanyNotification($details));
+        if(env('ADMIN_EMAIL_TO')){
+            Mail::to('ADMIN_EMAIL_TO')->send(new NewCompanyNotification($details));
+        }
 
         return redirect(route('company.index'))
             ->with('notification', 'Company created!');
@@ -119,18 +120,17 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        $employers = Employer::select('id')->where('company_id', $id)->get();
+        $employees = Employee::select('id')->where('company_id', $id)->get();
 
-        if($employers->isEmpty()){
+        if($employees->isEmpty()){
             Company::destroy($id);
+        }else{
+            return response()->json(
+                [
+                    'status' => 'error',
+                    'message' => __('site.existEmployeeInCompany')
+                ]
+            );
         }
-//        else{
-//            return response()->json(
-//                [
-//                    'status' => 'error',
-//                    'message' => __('site.existEmployer')
-//                ]
-//            );
-//        }
     }
 }
