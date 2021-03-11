@@ -23,7 +23,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $items = Company::paginate(Config::get('setting.perPage'));
+        $items = Company::orderBy('id', 'desc')->paginate(Config::get('setting.perPage'));
         return view('company.index')
             ->with('items', $items);
     }

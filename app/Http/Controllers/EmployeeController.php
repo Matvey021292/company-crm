@@ -20,7 +20,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $items = Employee::paginate(Config::get('setting.perPage'));
+        $items = Employee::orderBy('id', 'desc')->paginate(Config::get('setting.perPage'));
 
         return view('employee.index')
             ->with('items', $items);

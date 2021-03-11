@@ -25,8 +25,8 @@ class EmployeeRequest extends FormRequest
     {
 
         return [
-            'name' => 'required|string|min:4|max:255',
-            'lastname' => 'required|string|min:4|max:255',
+            'name' => 'required|string|min:2|max:255',
+            'lastname' => 'required|string|min:2|max:255',
             'email' => 'required|email:rfc|unique:employees,email,'.$this->employee .'|max:255',
             'phone' => 'required|integer|regex:/(80)[0-9]{9}/'
         ];
