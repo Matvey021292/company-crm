@@ -5,47 +5,49 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EmployeeRequest;
 use App\Models\Company;
 use App\Models\Employee;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Config;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Routing\Redirector;
 
 class EmployeeController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
         $items = Employee::paginate(Config::get('setting.perPage'));
+
         return view('employee.index')
-            ->with('items', $items)
-            ->render();
+            ->with('items', $items);
     }
 
+
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
         $companies = Company::all();
-        return view('employee.create')->with('companies', $companies)->render();
+        return view('employee.create')
+            ->with('companies', $companies);
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param EmployeeRequest $request
+     * @return Application|RedirectResponse|Redirector
      */
     public function store(EmployeeRequest $request)
     {
         $item = $request->only('name', 'lastname', 'email', 'phone', 'company_id');
 
         Employee::create($item);
+
         return redirect(route('employee.index'))
             ->with('notification', 'Employee created!');
     }
@@ -61,26 +63,26 @@ class EmployeeController extends Controller
         //
     }
 
+
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return Application|Factory|View
      */
     public function edit($id)
     {
         $item = Employee::findOrFail($id);
         $companies = Company::select('id', 'name')->get();
+
         return view('employee.edit')
             ->with('item', $item)
-            ->with('companies', $companies)
-            ->render();
+            ->with('companies', $companies);
     }
+
 
     /**
      * @param EmployeeRequest $request
      * @param $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return Application|RedirectResponse|Redirector
      */
     public function update(EmployeeRequest $request, $id)
     {
@@ -88,17 +90,13 @@ class EmployeeController extends Controller
 
         $employee = Employee::where('id', $id)->first();
 
-
         $employee->update($item);
         return redirect(route('employee.index'))
             ->with('notification', 'Employee edited!');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param $id
      */
     public function destroy($id)
     {

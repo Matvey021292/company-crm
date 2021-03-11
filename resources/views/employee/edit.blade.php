@@ -1,4 +1,4 @@
-@section('title', __('site.employe'))
+@section('title', __('site.employee'))
 @extends('layouts.app')
 
 @section('content')

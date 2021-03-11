@@ -27,8 +27,8 @@ class EmployeeRequest extends FormRequest
         return [
             'name' => 'required|string|min:4|max:255',
             'lastname' => 'required|string|min:4|max:255',
-            'email' => 'required|email:rfc,dns|unique:companies,email,'.$this->employee .'|max:255',
-            'phone' => 'required|regex:/(80)[0-9]{9}/'
+            'email' => 'required|email:rfc|unique:employees,email,'.$this->employee .'|max:255',
+            'phone' => 'required|integer|regex:/(80)[0-9]{9}/'
         ];
     }
 
@@ -43,6 +43,7 @@ class EmployeeRequest extends FormRequest
             'email.required' => __('site.emailRequired'),
             'email.unique' => __('site.emailExists'),
             'email.email' => __('site.invalidEmailAddress'),
+            'phone.integer' => __('site.phoneNumber')
         ];
     }
 }

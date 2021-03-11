@@ -45,6 +45,7 @@
                                    <button id="{{$item->id}}"
                                            data-action="{{route('company.destroy', ['company' => $item->id])}}"
                                            class="delete btn btn-danger">{{__('site.delete')}}</button>
+                                   <small>{{ __('site.countEmployee') }} : {{$item->employee()->count()}}</small>
                                </td>
                            </tr>
                        @endforeach

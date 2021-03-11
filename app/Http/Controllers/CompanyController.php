@@ -25,8 +25,7 @@ class CompanyController extends Controller
     {
         $items = Company::paginate(Config::get('setting.perPage'));
         return view('company.index')
-            ->with('items', $items)
-            ->render();
+            ->with('items', $items);
     }
 
 

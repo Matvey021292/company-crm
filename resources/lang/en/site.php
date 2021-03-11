@@ -45,5 +45,7 @@ return [
     'reset'    => 'Reset Password',
     'sendReset' => 'Send Password Reset Link',
     'more' => 'More info',
-    'existEmployeeInCompany' => 'Mistake. The company has employees'
+    'existEmployeeInCompany' => 'Mistake. The company has employees',
+    'phoneNumber' => 'The phone must be an integer.',
+    'countEmployee' => 'The count  employees'
 ];
