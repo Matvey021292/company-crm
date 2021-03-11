@@ -7,6 +7,7 @@
             <div class="card-body">
                 <div class="form-group">
                     @include('partials.errors')
+                    @include('partials.notification')
                 </div>
                 <div class="form-group">
                     @csrf

@@ -36,6 +36,7 @@ return [
     'sizeLogo' => 'Size logo/ min width 100px, max width 1024px',
     'nameMinSymbol' => 'Name min 4 symbol',
     'lastNameRequired' => 'Last Name required',
+    'firstNameRequired' => 'Name required',
     'lastNameMinSymbol' => 'Last Name min 4 symbol',
     'invalidPhone' => 'Invalid phone number',
     'forgot' => 'Forgot Your Password?',
@@ -47,5 +48,10 @@ return [
     'more' => 'More info',
     'existEmployeeInCompany' => 'Mistake. The company has employees',
     'phoneNumber' => 'The phone must be an integer.',
-    'countEmployee' => 'The count  employees'
+    'countEmployee' => 'The count employees',
+    'employeeCreated' => 'Employee created!',
+    'companyCreated' => 'Company created!',
+    'employeeEdit' => 'Employee edit!',
+    'companyEdit' => 'Company edit!',
+    'phoneMinSymbol' => 'the minimum number of characters in a phone number is 11'
 ];

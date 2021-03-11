@@ -27,19 +27,23 @@ class EmployeeRequest extends FormRequest
         return [
             'name' => 'required|string|min:2|max:255',
             'lastname' => 'required|string|min:2|max:255',
-            'email' => 'required|email:rfc|unique:employees,email,'.$this->employee .'|max:255',
-            'phone' => 'required|integer|regex:/(80)[0-9]{9}/'
+            'email' => 'email:rfc,dns|unique:employees,email,'.$this->employee .'|max:255',
+            'phone' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:11'
         ];
     }
 
+    /**
+     * @return array
+     */
     public function messages()
     {
         return [
-            'name.required' => __('site.nameRequired'),
+            'name.required' => __('site.firstNameRequired'),
             'name.min' => __('site.nameMinSymbol'),
             'lastname.required' => __('site.lastNameRequired'),
             'lastname.min' => __('site.lastNameMinSymbol'),
             'phone.regex' => __('site.invalidPhone'),
+            'phone.min' => __('site.phoneMinSymbol'),
             'email.required' => __('site.emailRequired'),
             'email.unique' => __('site.emailExists'),
             'email.email' => __('site.invalidEmailAddress'),

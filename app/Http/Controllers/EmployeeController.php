@@ -20,7 +20,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $items = Employee::orderBy('id', 'desc')->paginate(Config::get('setting.perPage'));
+        $items = Employee::orderBy('id', 'desc')->simplePaginate(Config::get('setting.perPage'));
 
         return view('employee.index')
             ->with('items', $items);
@@ -49,7 +49,7 @@ class EmployeeController extends Controller
         Employee::create($item);
 
         return redirect(route('employee.index'))
-            ->with('notification', 'Employee created!');
+            ->with('notification', __('site.employeeCreated'));
     }
 
     /**
@@ -92,7 +92,7 @@ class EmployeeController extends Controller
 
         $employee->update($item);
         return redirect(route('employee.index'))
-            ->with('notification', 'Employee edited!');
+            ->with('notification', __('site.employeeEdit'));
     }
 
     /**

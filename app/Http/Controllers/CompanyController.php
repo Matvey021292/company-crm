@@ -23,7 +23,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $items = Company::orderBy('id', 'desc')->paginate(Config::get('setting.perPage'));
+        $items = Company::orderBy('id', 'desc')->simplePaginate(Config::get('setting.perPage'));
         return view('company.index')
             ->with('items', $items);
     }
@@ -53,16 +53,15 @@ class CompanyController extends Controller
 
         Company::create($item);
 
-        $details = [
-            'title' => "Create new company {$item['name']}",
-        ];
-
         if(env('ADMIN_EMAIL_TO')){
+            $details = [
+                'title' => "Create new company {$item['name']}",
+            ];
             Mail::to('ADMIN_EMAIL_TO')->send(new NewCompanyNotification($details));
         }
 
         return redirect(route('company.index'))
-            ->with('notification', 'Company created!');
+            ->with('notification', __('site.companyCreated'));
     }
 
     /**
@@ -84,8 +83,7 @@ class CompanyController extends Controller
     {
         $item = Company::findOrFail($id);
         return view('company.edit')
-            ->with('item', $item)
-            ->render();
+            ->with('item', $item);
     }
 
 
@@ -108,7 +106,7 @@ class CompanyController extends Controller
 
         $current->update($item);
         return redirect(route('company.index'))
-            ->with('notification', 'Company edited!');
+            ->with('notification', __('site.companyEdit'));
 
     }
 

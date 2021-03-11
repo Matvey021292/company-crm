@@ -28,7 +28,7 @@ class CompanyRequest extends FormRequest
 
         return [
             'name' => 'required|string|min:2|max:255',
-            'email' => 'required|email:rfc|unique:companies,email,'.$this->company .'|max:255',
+            'email' => 'required|email:rfc,dns|unique:companies,email,'.$this->company .'|max:255',
             "logo"  => "dimensions:min_width=100,min_height=100,max_width=1024,max-height=768|image|mimes:jpeg,png,jpg|max:2048"
         ];
     }

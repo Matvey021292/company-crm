@@ -3,6 +3,9 @@
 
 @section('content')
    <div class="col-12">
+       <div class="form-group">
+           @include('partials.notification')
+       </div>
        <div class="card">
            <div class="card-header">
                <div class="float-right">

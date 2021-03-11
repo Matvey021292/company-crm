@@ -3,6 +3,9 @@
 
 @section('content')
     <div class="col-12">
+        <div class="form-group">
+            @include('partials.notification')
+        </div>
         <div class="card">
             <div class="card-header">
                 <div class="float-right">
@@ -13,19 +16,19 @@
             </div>
             <div class="card-body table-responsive p-0">
                 @if($items->isNotEmpty())
-                <table class="table table-fixed table-head-fixed">
-                    <thead>
-                    <tr>
-                        <th width="100">{{__('ID')}}</th>
-                        <th width="100">{{__('site.firstname')}}</th>
-                        <th width="100">{{__('site.lastname')}}</th>
-                        <th width="180">{{__('Email')}}</th>
-                        <th width="180">{{__('site.phone')}}</th>
-                        <th width="150">{{__('site.company')}}</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                    <table class="table table-fixed table-head-fixed">
+                        <thead>
+                        <tr>
+                            <th width="100">{{__('ID')}}</th>
+                            <th width="100">{{__('site.firstname')}}</th>
+                            <th width="100">{{__('site.lastname')}}</th>
+                            <th width="180">{{__('Email')}}</th>
+                            <th width="180">{{__('site.phone')}}</th>
+                            <th width="150">{{__('site.company')}}</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         @foreach($items as $item)
                             <tr>
                                 <td>{{$item->id}}</td>
@@ -37,13 +40,15 @@
                                 <td class="text-center">
                                     <a href="{{route('employee.edit', ['employee' => $item->id])}}"
                                        class="btn btn-primary">{{__('site.edit')}}</a>
-                                    <button id="{{$item->id}}" data-action="{{route('employee.destroy', ['employee' => $item->id])}}" class="delete btn btn-danger">{{__('site.delete')}}</button>
+                                    <button id="{{$item->id}}"
+                                            data-action="{{route('employee.destroy', ['employee' => $item->id])}}"
+                                            class="delete btn btn-danger">{{__('site.delete')}}</button>
                                 </td>
                             </tr>
                         @endforeach
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
                 @else
                     <h3 class="py-3 text-center">{{__('site.exist')}}</h3>
                 @endif
